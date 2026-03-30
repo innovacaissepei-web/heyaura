@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aura ✦ Copilote de vie · Tai-Chi & Qi Gong · Jérôme Loeillet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg-dark:#08060E;--bg-light:#FAF8F5;--bg-cream:#F5F0E8;--bg-warm:#FDF9F3;
+--v:#7C3AED;--v2:#A78BFA;--v3:#C4B5FD;--v4:#6D28D9;
+--pk:#DB2777;--pk2:#F472B6;--cy:#06B6D4;--gn:#10B981;--gd:#C9A96E;
+--txt-dark:#1A1A2E;--txt-mid:#4A4A5A;--txt-light:#7A7A8A;
+--card-light:rgba(124,58,237,0.03);--border-light:rgba(124,58,237,0.08)
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--txt-dark);overflow-x:hidden;line-height:1.7}
+.c{max-width:1080px;margin:0 auto;padding:0 28px}
+.fade{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease}
+.fade.v{opacity:1;transform:none}
+
+/* NAV - glassmorphism */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:12px 0;background:rgba(250,248,245,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(124,58,237,0.06);transition:background 0.3s}
+nav.dark{background:rgba(8,6,14,0.9);border-bottom-color:rgba(124,58,237,0.1)}
+nav .c{display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--v),var(--pk));display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;font-weight:700;box-shadow:0 3px 12px rgba(124,58,237,0.3)}
+.logo-txt{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--v4);letter-spacing:2px}
+nav.dark .logo-txt{color:var(--v3)}
+.nav-links{display:flex;gap:22px}
+.nav-links a{color:var(--txt-light);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;transition:color 0.3s}
+.nav-links a:hover{color:var(--v)}
+nav.dark .nav-links a{color:#8A8598}
+nav.dark .nav-links a:hover{color:var(--v3)}
+.nav-cta{padding:9px 22px;border-radius:50px;border:1.5px solid rgba(124,58,237,0.3);background:rgba(124,58,237,0.06);color:var(--v);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.3s}
+.nav-cta:hover{background:var(--v);color:#fff;border-color:var(--v)}
+
+/* HERO - DARK CINEMATIC */
+.hero{min-height:100vh;background:var(--bg-dark);display:flex;align-items:center;position:relative;overflow:hidden;padding:100px 0 60px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(124,58,237,0.14),transparent 50%),radial-gradient(ellipse at 70% 60%,rgba(219,39,119,0.06),transparent 45%),radial-gradient(ellipse at 50% 90%,rgba(6,182,212,0.04),transparent 40%)}
+.hero-grid{position:absolute;inset:0;opacity:0.02;background-image:linear-gradient(rgba(124,58,237,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.5) 1px,transparent 1px);background-size:80px 80px}
+.hero .c{position:relative;z-index:1}
+.hero-flex{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:50px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.25);font-size:12px;color:var(--v2);font-weight:600;margin-bottom:20px;letter-spacing:1px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,54px);font-weight:300;line-height:1.12;margin-bottom:16px;color:#fff}
+.hero h1 em{font-style:italic;color:var(--v3)}
+.hero h1 .accent{color:var(--pk2)}
+.hero-sub{font-size:17px;color:#8A8598;font-weight:300;line-height:1.8;margin-bottom:28px}
+.hero-sub strong{color:var(--v3);font-weight:400}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn-v{padding:15px 34px;border-radius:50px;border:none;background:linear-gradient(135deg,var(--v),var(--pk));color:#fff;font-family:'DM Sans';font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;box-shadow:0 4px 24px rgba(124,58,237,0.3)}
+.btn-v:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,0.4)}
+.btn-o{padding:15px 34px;border-radius:50px;border:1.5px solid rgba(124,58,237,0.3);background:none;color:var(--v3);font-family:'DM Sans';font-size:15px;font-weight:500;cursor:pointer;transition:all 0.3s;text-decoration:none}
+.btn-o:hover{border-color:var(--v);background:rgba(124,58,237,0.08)}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.yy{width:280px;height:280px;border-radius:50%;display:flex;align-items:center;justify-content:center;animation:fl 8s ease-in-out infinite;position:relative;background:radial-gradient(circle,rgba(124,58,237,0.1),transparent 70%);border:1.5px solid rgba(124,58,237,0.12);box-shadow:0 0 80px rgba(124,58,237,0.08)}
+.yy::before{content:"☯";font-size:120px;opacity:0.12;color:var(--v3)}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(3deg)}}
+.hero-stats{display:flex;gap:28px;margin-top:24px}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:28px;font-weight:200;color:var(--v3)}
+.hero-stat .lab{font-size:10px;color:#6A6580;letter-spacing:1.5px;text-transform:uppercase}
+
+/* TRANSITION GRADIENT */
+.trans{height:120px;background:linear-gradient(var(--bg-dark),var(--bg-light))}
+
+/* LIGHT SECTIONS */
+.sec-light{background:var(--bg-light);padding:80px 0;position:relative}
+.sec-warm{background:var(--bg-warm);padding:80px 0}
+.sec-cream{background:var(--bg-cream);padding:80px 0}
+.sec-white{background:#fff;padding:80px 0}
+.sec-dark{background:var(--bg-dark);padding:80px 0}
+
+.lbl{font-size:11px;color:var(--v);font-weight:600;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px}
+.lbl-dark{color:var(--v2)}
+.ttl{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,40px);font-weight:300;line-height:1.18;margin-bottom:12px;color:var(--txt-dark)}
+.ttl em{font-style:italic;color:var(--v)}
+.ttl-dark{color:#fff}
+.ttl-dark em{color:var(--v3)}
+.sub-txt{font-size:16px;color:var(--txt-light);font-weight:300;line-height:1.7;max-width:560px}
+
+/* CARDS LIGHT */
+.card{background:#fff;border:1px solid var(--border-light);border-radius:20px;padding:28px 24px;transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.03)}
+.card:hover{border-color:rgba(124,58,237,0.15);transform:translateY(-3px);box-shadow:0 8px 32px rgba(124,58,237,0.06)}
+.card-dark{background:rgba(124,58,237,0.04);border:1px solid rgba(124,58,237,0.1);box-shadow:none}
+.card-dark:hover{border-color:rgba(124,58,237,0.2);box-shadow:0 8px 32px rgba(124,58,237,0.08)}
+.card .ic{font-size:32px;margin-bottom:14px;display:block}
+.card h3{font-size:17px;font-weight:600;color:var(--txt-dark);margin-bottom:6px}
+.card-dark h3{color:#fff}
+.card p{font-size:14px;color:var(--txt-light);line-height:1.65}
+.card-dark p{color:#8A8598}
+.tag{display:inline-block;margin-top:8px;padding:3px 12px;border-radius:50px;font-size:11px;font-weight:600}
+.feat-card{background:linear-gradient(135deg,rgba(124,58,237,0.04),rgba(219,39,119,0.02));border:1.5px solid rgba(124,58,237,0.12);position:relative}
+.pop{position:absolute;top:-10px;left:50%;transform:translateX(-50%);padding:3px 16px;border-radius:50px;background:linear-gradient(135deg,var(--v),var(--pk));font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.sep{height:1px;background:var(--border-light);margin:16px 0}
+.sep-dark{background:rgba(124,58,237,0.08)}
+
+/* PRICE */
+.price-line{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(124,58,237,0.06)}
+.price-line:last-child{border-bottom:none}
+.price-name{font-size:15px;font-weight:500;color:var(--txt-dark)}
+.price-name span{display:block;font-size:13px;color:var(--txt-light);font-weight:300;margin-top:2px}
+.price-val{font-size:18px;font-weight:600;color:var(--v);text-align:right;white-space:nowrap}
+
+/* VIDEO CARDS */
+.video-card{background:#fff;border:1px solid var(--border-light);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.03)}
+.video-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,58,237,0.08)}
+.video-thumb{height:140px;background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(219,39,119,0.03));display:flex;align-items:center;justify-content:center;position:relative}
+.video-thumb::after{content:"▶";font-size:28px;color:rgba(124,58,237,0.5);width:52px;height:52px;border-radius:50%;background:rgba(124,58,237,0.08);display:flex;align-items:center;justify-content:center}
+.video-info{padding:14px 16px}
+.video-info h4{font-size:14px;font-weight:600;color:var(--txt-dark);margin-bottom:3px}
+.video-info p{font-size:12px;color:var(--txt-light)}
+.lock{position:absolute;top:8px;right:8px;padding:3px 10px;border-radius:50px;background:var(--pk);font-size:10px;color:#fff;font-weight:700}
+
+/* AURA BOX */
+.aura-box{background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(219,39,119,0.03));border:1.5px solid rgba(124,58,237,0.12);border-radius:28px;padding:40px 32px;text-align:center;position:relative;overflow:hidden}
+.aura-box::before{content:"";position:absolute;top:-50%;right:-20%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.06),transparent);pointer-events:none}
+
+/* PARCOURS */
+.parcours-card{display:flex;align-items:flex-start;gap:20px;padding:20px 24px;background:#fff;border:1px solid var(--border-light);border-radius:16px;margin-bottom:12px;transition:all 0.3s;box-shadow:0 2px 8px rgba(0,0,0,0.02)}
+.parcours-card:hover{border-color:rgba(124,58,237,0.15)}
+.parcours-icon{font-size:28px;flex-shrink:0;width:48px;height:48px;border-radius:14px;background:rgba(124,58,237,0.06);display:flex;align-items:center;justify-content:center}
+.parcours-label{font-size:14px;font-weight:600;color:var(--v)}
+.parcours-title{font-size:16px;font-weight:600;color:var(--txt-dark);margin-top:2px}
+.parcours-desc{font-size:13px;color:var(--txt-light);margin-top:2px}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
+.contact-card{background:#fff;border:1px solid var(--border-light);border-radius:16px;padding:22px;text-align:center;transition:all 0.3s;box-shadow:0 2px 8px rgba(0,0,0,0.02)}
+.contact-card:hover{border-color:rgba(124,58,237,0.15)}
+.contact-card .ic{font-size:28px;margin-bottom:6px;display:block}
+.contact-card h4{font-size:14px;font-weight:600;color:var(--txt-dark);margin-bottom:3px}
+.contact-card p{font-size:14px;color:var(--v)}
+.contact-card a{color:var(--v);text-decoration:none;font-weight:600}
+
+/* FOOTER */
+footer{background:var(--bg-dark);border-top:1px solid rgba(124,58,237,0.08);padding:32px 0;text-align:center}
+footer p{font-size:13px;color:#6A6580}
+footer a{color:var(--v3);text-decoration:none}
+
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--v),var(--pk),var(--cy),var(--v));z-index:50}
+
+@media(max-width:768px){
+.hero-flex{grid-template-columns:1fr}.yy{width:200px;height:200px;margin:0 auto 20px}.yy::before{font-size:80px}
+.grid2,.grid3,.contact-grid{grid-template-columns:1fr}
+.nav-links{display:none}.btn-row{flex-direction:column;align-items:stretch;text-align:center}
+.hero-stats{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav"><div class="c"><div class="logo"><div class="logo-icon">✦</div><span class="logo-txt">AURA · TAI-CHI</span></div><div class="nav-links"><a href="#app">L'app</a><a href="#taichi">Tai-Chi</a><a href="#qigong">Qi Gong</a><a href="#videos">Vidéos</a><a href="#about">Parcours</a><a href="#contact">Contact</a></div><a href="https://wa.me/262693540032?text=TAI-CHI" class="nav-cta" target="_blank">Cours d'essai ✦</a></div></nav>
+
+<!-- HERO DARK -->
+<section class="hero"><div class="hero-bg"></div><div class="hero-grid"></div><div class="c"><div class="hero-flex">
+<div>
+<div class="badge">🏆 Vice-Champion d'Europe 2010 · Oxford</div>
+<h1>L'art du <em>Tai-Chi</em><br>& du <em>Qi Gong</em><br>à <span class="accent">La Réunion</span></h1>
+<p class="hero-sub">Forme ancienne Yang Lu Chan · Forme courte Cheng Man Ching · 5 pratiques de Qi Gong. Un enseignement authentique par un <strong>Vice-Champion d'Europe</strong>, à La Saline-les-Hauts.</p>
+<div class="btn-row">
+<a href="https://wa.me/262693540032?text=TAI-CHI" class="btn-v" target="_blank">Cours d'essai gratuit</a>
+<a href="#app" class="btn-o">Découvrir Aura ✦</a>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><div class="num">☯</div><div class="lab">Style Yang</div></div>
+<div class="hero-stat"><div class="num">108</div><div class="lab">Mouvements</div></div>
+<div class="hero-stat"><div class="num">37</div><div class="lab">Forme CMC</div></div>
+<div class="hero-stat"><div class="num">5</div><div class="lab">Qi Gong</div></div>
+</div>
+</div>
+<div class="hero-visual"><div class="yy"></div></div>
+</div></div></section>
+
+<div class="trans"></div>
+
+<!-- SECTION: AURA L'APP -->
+<section class="sec-light" id="app"><div class="c">
+<div class="fade"><div class="lbl">✦ Aura · Copilote de vie</div>
+<h2 class="ttl">Plus qu'un cours de tai-chi.<br>Un <em>écosystème de bien-être</em>.</h2>
+<p class="sub-txt">Aura est l'application qui prolonge votre pratique au quotidien. Créée par votre professeur, elle combine bien-être digital et arts énergétiques traditionnels.</p></div>
+<div class="grid3 fade" style="margin-top:24px">
+<div class="card"><span class="ic">📸</span><h3>Scan Magique</h3><p>Photographiez un document — facture, courrier, ordonnance. L'IA extrait les infos et crée la tâche pour vous. Zéro saisie.</p></div>
+<div class="card"><span class="ic">💗</span><h3>Bien-être en 30 sec</h3><p>Check-in quotidien : humeur, énergie, anxiété, sommeil. Aura vous recommande l'exercice adapté, une citation inspirante, une micro-leçon.</p></div>
+<div class="card"><span class="ic">⚖️</span><h3>Charge mentale</h3><p>Visualisez qui fait quoi dans le couple. En temps réel. Rééquilibrez les tâches. Moins de disputes, plus de sérénité.</p></div>
+</div>
+<div class="aura-box fade" style="margin-top:24px">
+<p style="font-size:12px;color:var(--v);letter-spacing:4px;font-weight:600;margin-bottom:8px">✦ OFFERTE AUX ABONNÉS TAI-CHI</p>
+<h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:300;color:var(--txt-dark);margin-bottom:8px">L'app Aura est <em style="color:var(--v)">incluse</em><br>dans votre abonnement</h3>
+<p style="font-size:15px;color:var(--txt-light);line-height:1.7;max-width:480px;margin:0 auto 16px">Cohérence cardiaque guidée, rituels matin & soir, suivi de progression, décharge mentale. Tout ce dont vous avez besoin entre les cours.</p>
+<a href="https://zippy-biscochitos-8d6626.netlify.app/" class="btn-v" target="_blank">Rejoindre la liste d'attente ✦</a>
+</div>
+</div></section>
+
+<!-- SECTION: QI GONG -->
+<section class="sec-warm" id="qigong"><div class="c">
+<div class="fade"><div class="lbl">Qi Gong</div>
+<h2 class="ttl">5 pratiques <em>énergétiques</em></h2>
+<p class="sub-txt">Le Qi Gong est le fondement de toute pratique interne. Accessible à tous dès le premier cours, il prépare le corps et calme l'esprit.</p></div>
+<div class="grid2 fade">
+<div class="card"><span class="ic">🌅</span><h3>Ba Duan Jin · 8 pièces de brocart</h3><p>La série de Qi Gong la plus connue au monde. 8 exercices puissants pour renforcer le corps, stimuler les organes et faire circuler l'énergie. Le point de départ idéal.</p><span class="tag" style="background:rgba(16,185,129,0.1);color:var(--gn)">Accessible à tous</span></div>
+<div class="card"><span class="ic">🦢</span><h3>Qi Gong des Oies Sauvages</h3><p>64 mouvements gracieux inspirés du vol des oies sauvages (Dayan Qi Gong). Travail sur la souplesse, la coordination et la circulation du Qi. Une forme d'une beauté rare.</p><span class="tag" style="background:rgba(124,58,237,0.08);color:var(--v)">Intermédiaire</span></div>
+<div class="card"><span class="ic">🐅</span><h3>Le Jeu des 5 Animaux · Wu Qin Xi</h3><p>Tigre, cerf, ours, singe, grue. Chaque animal travaille un organe et une émotion. Créé par le médecin Hua Tuo il y a 1 800 ans — le plus ancien Qi Gong de l'histoire.</p><span class="tag" style="background:rgba(245,158,11,0.1);color:#D97706">Tous niveaux</span></div>
+<div class="card"><span class="ic">🧘</span><h3>Étirements des Méridiens</h3><p>Étirements spécifiques qui suivent les 12 méridiens de la médecine chinoise. Débloque les stagnations, soulage les tensions, rééquilibre l'énergie du corps.</p><span class="tag" style="background:rgba(6,182,212,0.08);color:var(--cy)">Thérapeutique</span></div>
+</div>
+<div class="card fade" style="margin-top:16px"><span class="ic">🌳</span><h3>Zhan Zhuang · Posture de l'arbre</h3><p>L'exercice fondamental de toute pratique interne. Immobile, debout, enraciné. Développe la force interne, le calme mental et la stabilité profonde. De 1 minute pour les débutants à 20 minutes pour les pratiquants avancés. Simple en apparence, transformateur en profondeur.</p></div>
+</div></section>
+
+<!-- SECTION: TAI-CHI STYLES -->
+<section class="sec-white" id="taichi"><div class="c">
+<div class="fade"><div class="lbl">Tai-Chi · Style Yang</div>
+<h2 class="ttl">Trois formes, <em>une progression</em></h2>
+<p class="sub-txt">Du premier mouvement à la maîtrise complète. Chaque forme est une étape dans votre voyage intérieur.</p></div>
+<div class="grid3 fade">
+<div class="card"><span class="ic">🌿</span><h3>Forme courte Cheng Man Ching</h3><p>37 mouvements essentiels du style Yang, sélectionnés par le professeur Cheng Man Ching. La forme la plus pratiquée au monde — accessible, profonde, élégante. 7 à 8 minutes suffisent pour l'exécuter.</p><div class="sep"></div><p><strong>Durée :</strong> 6 mois d'apprentissage</p><p><strong>Public :</strong> Débutants, actifs</p><span class="tag" style="background:rgba(16,185,129,0.1);color:var(--gn)">Porte d'entrée idéale</span></div>
+
+<div class="card feat-card"><div class="pop">Forme classique</div><span class="ic">☯️</span><h3>Forme longue Yang · 108 mouvements</h3><p>La forme classique codifiée par Yang Cheng Fu, petit-fils du fondateur. 108 mouvements enchaînés avec fluidité et présence. Le socle de toute la pratique du style Yang.</p><div class="sep"></div><p><strong>Durée :</strong> 1 à 2 ans d'apprentissage</p><p><strong>Public :</strong> Intermédiaires</p><span class="tag" style="background:rgba(124,58,237,0.08);color:var(--v)">Le socle Yang</span></div>
+
+<div class="card" style="background:linear-gradient(135deg,rgba(201,169,110,0.04),rgba(201,169,110,0.01));border-color:rgba(201,169,110,0.15)"><span class="ic">🐉</span><h3>Forme ancienne Yang Lu Chan</h3><p>La forme originelle du fondateur du style Yang, avant les simplifications modernes. Transmise par Maître Thierry Alibert. Inclut les dimensions martiales et énergétiques profondes. Rare et authentique.</p><div class="sep"></div><p><strong>Lignée :</strong> Yang Lu Chan → ... → Thierry Alibert → Jérôme</p><p><strong>Public :</strong> Avancés</p><span class="tag" style="background:rgba(201,169,110,0.1);color:var(--gd)">✦ Ma spécialité</span></div>
+</div>
+
+<div class="card fade" style="margin-top:16px"><span class="ic">🤝</span><h3>Tui Shou · Poussée des mains</h3><p>Exercice à deux — apprendre à sentir, dévier et utiliser la force de l'autre. L'application concrète des principes du tai-chi. Développe l'écoute corporelle, la sensibilité, et la compréhension martiale des mouvements.</p></div>
+</div></section>
+
+<!-- SECTION: PARCOURS ÉLÈVE -->
+<section class="sec-light"><div class="c">
+<div class="fade"><div class="lbl">Progression</div>
+<h2 class="ttl">Le parcours de <em>l'élève</em></h2>
+<p class="sub-txt">Un chemin clair, du premier jour à la maîtrise. Chaque phase construit sur la précédente.</p></div>
+<div class="fade" style="margin-top:24px">
+<div class="parcours-card"><div class="parcours-icon">🌱</div><div><div class="parcours-label">Phase 1 · Mois 1-3</div><div class="parcours-title">Les fondations</div><div class="parcours-desc">Qi Gong : Ba Duan Jin + Zhan Zhuang + Étirements des méridiens. Posture, respiration, relâchement (song). Aucun prérequis.</div></div></div>
+<div class="parcours-card"><div class="parcours-icon">🌿</div><div><div class="parcours-label">Phase 2 · Mois 3-12</div><div class="parcours-title">La forme courte</div><div class="parcours-desc">Forme Cheng Man Ching (37 mouvements) section par section. Qi Gong des Oies Sauvages + Jeu des 5 Animaux. Premiers pas dans le Tui Shou.</div></div></div>
+<div class="parcours-card"><div class="parcours-icon">☯️</div><div><div class="parcours-label">Phase 3 · Année 2</div><div class="parcours-title">La forme longue</div><div class="parcours-desc">Forme longue Yang 108 mouvements. Tui Shou approfondi. Applications martiales. Travail énergétique interne.</div></div></div>
+<div class="parcours-card"><div class="parcours-icon">🐉</div><div><div class="parcours-label">Phase 4 · Année 3+</div><div class="parcours-title">La voie profonde</div><div class="parcours-desc">Forme ancienne Yang Lu Chan. Travail martial avancé. Alchimie interne. La voie de la maîtrise.</div></div></div>
+</div>
+</div></section>
+
+<!-- SECTION: LE PROFESSEUR -->
+<section class="sec-warm" id="about"><div class="c">
+<div class="fade"><div class="lbl">Le professeur</div>
+<h2 class="ttl">Jérôme · <em>Vice-Champion d'Europe</em></h2></div>
+<div class="grid2 fade">
+<div>
+<p class="sub-txt" style="margin-bottom:16px">En 2010, j'ai eu l'honneur de devenir Vice-Champion d'Europe de Tai-Chi à Oxford. Formé par Maître Thierry Alibert, l'un des rares détenteurs en France de la forme ancienne Yang Lu Chan.</p>
+<p class="sub-txt" style="margin-bottom:16px">Pendant de nombreuses années, j'ai enseigné au sein de l'association <strong style="color:var(--txt-dark)">La Voie du Tai Chi</strong> — en EHPAD auprès de personnes âgées, avec des enfants en difficulté, dans des foyers, pour des comités d'entreprise, et en cours collectifs tous publics.</p>
+<p class="sub-txt" style="margin-bottom:16px;font-style:italic;color:var(--v)">Le tai-chi ne m'a jamais quitté. Ces dernières années, ma pratique s'est faite plus intime, plus personnelle — un rendez-vous quotidien avec moi-même, dans le silence. L'art mûrit dans le silence avant de se partager à nouveau.</p>
+<p class="sub-txt">Aujourd'hui, l'envie de transmettre revient, plus forte. Et c'est ici, à La Réunion, que je choisis de le faire.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div class="parcours-card" style="margin:0"><div class="parcours-icon">🏆</div><div><div class="parcours-title">Vice-Champion d'Europe 2010</div><div class="parcours-desc">Oxford · Tai-Chi style Yang</div></div></div>
+<div class="parcours-card" style="margin:0"><div class="parcours-icon">🥋</div><div><div class="parcours-title">Association La Voie du Tai Chi</div><div class="parcours-desc">Enseignement tous publics pendant de nombreuses années</div></div></div>
+<div class="parcours-card" style="margin:0"><div class="parcours-icon">👴</div><div><div class="parcours-title">EHPAD & Personnes âgées</div><div class="parcours-desc">Mobilité, prévention des chutes, équilibre, autonomie</div></div></div>
+<div class="parcours-card" style="margin:0"><div class="parcours-icon">👦</div><div><div class="parcours-title">Enfants en difficulté</div><div class="parcours-desc">Concentration, confiance en soi, gestion des émotions</div></div></div>
+<div class="parcours-card" style="margin:0"><div class="parcours-icon">🏢</div><div><div class="parcours-title">Comités d'entreprise & Foyers</div><div class="parcours-desc">Gestion du stress, cohésion, bien-être collectif</div></div></div>
+<div class="parcours-card" style="margin:0"><div class="parcours-icon">✦</div><div><div class="parcours-title">Créateur d'Aura</div><div class="parcours-desc">App copilote de vie · Bien-être & charge mentale</div></div></div>
+</div></div>
+</div></section>
+
+<!-- SECTION: BIENFAITS -->
+<section class="sec-white"><div class="c" style="text-align:center">
+<div class="fade"><div class="lbl">Bienfaits</div>
+<h2 class="ttl">Ce que le Tai-Chi & le Qi Gong<br><em>changent en vous</em></h2></div>
+<div class="grid3 fade">
+<div class="card"><span class="ic">😌</span><h3>Anti-stress</h3><p>Réduit le cortisol de 20-30%. Active le système parasympathique. Le calme s'installe dès les premières séances.</p></div>
+<div class="card"><span class="ic">🦴</span><h3>Équilibre</h3><p>Renforce les muscles profonds et la proprioception. Prévention des chutes. Bénéfique à tout âge, surtout après 40 ans.</p></div>
+<div class="card"><span class="ic">💤</span><h3>Sommeil</h3><p>Amélioration significative en 3 à 4 semaines. La régulation du système nerveux favorise l'endormissement naturel.</p></div>
+<div class="card"><span class="ic">🧠</span><h3>Concentration</h3><p>Chaque mouvement exige une attention totale. Le tai-chi est une méditation en mouvement qui entraîne le focus.</p></div>
+<div class="card"><span class="ic">❤️</span><h3>Cardiovasculaire</h3><p>Réduit la pression artérielle. Améliore la circulation sanguine. Reconnu par l'Organisation Mondiale de la Santé.</p></div>
+<div class="card"><span class="ic">🌊</span><h3>Énergie vitale</h3><p>Fait circuler le Qi dans tout le corps via les méridiens. Débloque les stagnations. Renforce la vitalité globale.</p></div>
+</div>
+</div></section>
+
+<!-- SECTION: APPRENDRE -->
+<section class="sec-light"><div class="c">
+<div class="fade"><div class="lbl">Apprendre</div>
+<h2 class="ttl">Comprendre <em>le style Yang</em></h2>
+<p class="sub-txt">Le tai-chi n'est pas une gymnastique. C'est un art martial interne qui transforme le corps, le souffle et l'esprit.</p></div>
+<div class="grid2 fade">
+<div class="card"><span class="ic">🏔️</span><h3>L'histoire du style Yang</h3><p>Yang Lu Chan (1799-1872) a appris le tai-chi auprès de la famille Chen, puis a développé son propre style — plus ouvert, plus souple. Il a enseigné à la cour impériale de Pékin, ouvrant le tai-chi au monde. Aujourd'hui, le style Yang est le plus pratiqué sur la planète.</p></div>
+<div class="card"><span class="ic">🧘</span><h3>Les 10 principes de Yang Cheng Fu</h3><p>Suspendre la tête, relâcher la poitrine, détendre la taille, distinguer plein et vide, abaisser les épaules et les coudes, utiliser l'intention pas la force, coordonner haut et bas, unir interne et externe, pratiquer sans interruption, chercher le calme dans le mouvement.</p></div>
+<div class="card"><span class="ic">🌿</span><h3>Cheng Man Ching (1902-1975)</h3><p>Peintre, calligraphe, poète, médecin et maître de tai-chi. Élève de Yang Cheng Fu, il a créé sa forme courte en 37 mouvements pour rendre le tai-chi accessible à tous. Il a diffusé l'art à Taiwan puis aux États-Unis, ouvrant le tai-chi à l'Occident.</p></div>
+<div class="card"><span class="ic">⚡</span><h3>L'énergie interne (Qi)</h3><p>Le tai-chi travaille sur le Qi — l'énergie vitale qui circule dans le corps via les méridiens. La pratique débloque les stagnations, renforce l'énergie défensive (Wei Qi), et harmonise les organes internes. Physiologie subtile que la médecine chinoise utilise depuis 3 000 ans.</p></div>
+</div>
+<div class="card fade" style="margin-top:16px"><span class="ic">🥋</span><h3>Thierry Alibert · Mon maître</h3><p>L'un des rares détenteurs en France de la forme ancienne Yang Lu Chan dans sa version non modifiée. Son enseignement met l'accent sur la martialité originelle du style Yang — chaque mouvement a une application de combat, chaque transition est une opportunité. C'est cette dimension que je transmets à mes élèves avancés.</p></div>
+</div></section>
+
+<!-- SECTION: VIDÉOS -->
+<section class="sec-warm" id="videos"><div class="c">
+<div class="fade"><div class="lbl">Espace vidéos</div>
+<h2 class="ttl">Pratiquez <em>où que vous soyez</em></h2>
+<p class="sub-txt">Des cours filmés pour pratiquer chez vous, en voyage, ou entre les cours. Accès réservé aux membres.</p></div>
+<div class="grid3 fade">
+<div class="video-card"><div class="video-thumb"><span style="position:absolute;bottom:8px;left:10px;font-size:11px;color:var(--gn);font-weight:600">Gratuit</span></div><div class="video-info"><h4>Introduction au Qi Gong</h4><p>20 min · Posture de l'arbre + respiration</p></div></div>
+<div class="video-card"><div class="video-thumb"><span style="position:absolute;bottom:8px;left:10px;font-size:11px;color:var(--gn);font-weight:600">Gratuit</span></div><div class="video-info"><h4>Ba Duan Jin · Les 8 trésors</h4><p>25 min · Les 8 exercices complets</p></div></div>
+<div class="video-card"><div class="video-thumb"><span style="position:absolute;bottom:8px;left:10px;font-size:11px;color:var(--gn);font-weight:600">Gratuit</span></div><div class="video-info"><h4>Les bases du style Yang</h4><p>15 min · Posture, relâchement, premiers pas</p></div></div>
+<div class="video-card"><div class="video-thumb"><div class="lock">🔒 Membres</div></div><div class="video-info"><h4>CMC Section 1 · Mvts 1-12</h4><p>35 min · Détaillé pas à pas</p></div></div>
+<div class="video-card"><div class="video-thumb"><div class="lock">🔒 Membres</div></div><div class="video-info"><h4>CMC Section 2 · Mvts 13-24</h4><p>35 min · Suite de la forme</p></div></div>
+<div class="video-card"><div class="video-thumb"><div class="lock">🔒 Membres</div></div><div class="video-info"><h4>CMC Section 3 · Mvts 25-37</h4><p>30 min · Forme complète</p></div></div>
+<div class="video-card"><div class="video-thumb"><div class="lock">🔒 Membres</div></div><div class="video-info"><h4>Yang 108 · Partie 1</h4><p>45 min · Les 30 premiers mouvements</p></div></div>
+<div class="video-card"><div class="video-thumb"><div class="lock">🔒 Membres</div></div><div class="video-info"><h4>Qi Gong des Oies Sauvages</h4><p>30 min · 64 mouvements détaillés</p></div></div>
+<div class="video-card"><div class="video-thumb"><div class="lock">🔒 Membres</div></div><div class="video-info"><h4>Jeu des 5 Animaux</h4><p>35 min · Tigre, cerf, ours, singe, grue</p></div></div>
+</div>
+<div class="card fade" style="margin-top:20px;text-align:center">
+<h3>🎓 Accès Membres — Toutes les vidéos</h3>
+<p style="margin-bottom:14px;color:var(--txt-light)">3 vidéos gratuites + catalogue complet réservé aux abonnés. Nouvelles vidéos chaque mois.</p>
+<div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap">
+<div><p style="font-size:28px;font-weight:200;color:var(--v);margin:0">9,99€</p><p style="font-size:12px;color:var(--txt-light)">par mois</p></div>
+<div><p style="font-size:28px;font-weight:200;color:var(--gn);margin:0">79€</p><p style="font-size:12px;color:var(--txt-light)">par an · -34%</p></div>
+<div><p style="font-size:28px;font-weight:200;color:var(--pk);margin:0">Offert</p><p style="font-size:12px;color:var(--txt-light)">abonnés annuels tai-chi</p></div>
+</div>
+</div>
+</div></section>
+
+<!-- SECTION: COURS -->
+<section class="sec-white" id="cours"><div class="c" style="text-align:center">
+<div class="fade"><div class="lbl">Cours en présentiel</div>
+<h2 class="ttl">La Saline · <em>Ermitage</em></h2>
+<p class="sub-txt" style="margin:0 auto 20px">Secteur Ouest · Cours en salle + plein air face au lagon 🌅</p>
+<div class="card" style="background:linear-gradient(135deg,rgba(124,58,237,0.04),rgba(219,39,119,0.02));border:1.5px solid rgba(124,58,237,0.12);padding:20px 28px;display:inline-block">
+<p style="font-size:16px;font-weight:600;color:var(--v)">📅 Les dates, lieux et horaires seront communiqués très prochainement.</p>
+<p style="font-size:14px;color:var(--txt-light);margin-top:4px">Inscrivez-vous pour être informé·e en priorité ↓</p>
+</div></div>
+<div class="grid3 fade" style="margin-top:24px">
+<div class="card"><span class="ic">🌱</span><h3>Initiation</h3><p>Qi Gong + début CMC. Aucun prérequis.</p><span class="tag" style="background:rgba(16,185,129,0.1);color:var(--gn)">Débutant</span></div>
+<div class="card"><span class="ic">☯️</span><h3>Formes CMC & Yang 108</h3><p>37 à 108 mouvements. Progression.</p><span class="tag" style="background:rgba(59,130,246,0.1);color:#3B82F6">Tous niveaux</span></div>
+<div class="card"><span class="ic">🐉</span><h3>Yang Lu Chan & Tui Shou</h3><p>Forme ancienne. Applications.</p><span class="tag" style="background:rgba(201,169,110,0.1);color:var(--gd)">Avancé</span></div>
+</div>
+</div></section>
+
+<!-- SECTION: CITATION -->
+<section class="sec-dark"><div class="c" style="text-align:center;padding:40px 0">
+<p style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);font-weight:300;color:#fff;line-height:1.5;max-width:600px;margin:0 auto"><em style="color:var(--v3)">Le tai-chi n'est pas un sport.</em><br>C'est une voie de connaissance de soi<br>à travers le mouvement.<br><br><span style="font-size:18px;color:#6A6580">Chaque geste est une méditation.<br>Chaque souffle un acte de présence.</span></p>
+</div></section>
+
+<!-- SECTION: CONTACT -->
+<section class="sec-light" id="contact"><div class="c" style="text-align:center">
+<div class="fade"><div class="lbl">Contact</div>
+<h2 class="ttl">Votre premier cours<br><em>commence ici</em></h2>
+<p class="sub-txt" style="margin:0 auto 20px">Cours d'essai gratuit. Venez comme vous êtes. Aucune tenue spéciale, aucun prérequis. Juste l'envie de respirer.</p></div>
+<div class="contact-grid fade">
+<a href="https://wa.me/262693540032?text=TAI-CHI" target="_blank" style="text-decoration:none"><div class="contact-card"><span class="ic">💬</span><h4>WhatsApp</h4><p>Envoie "TAI-CHI"</p></div></a>
+<a href="tel:+262693540032" style="text-decoration:none"><div class="contact-card"><span class="ic">📞</span><h4>Téléphone</h4><p>0693 54 00 32</p></div></a>
+<div class="contact-card"><span class="ic">📍</span><h4>Base</h4><p style="color:var(--txt-dark)">La Saline-les-Hauts · Ouest</p></div>
+<a href="https://zippy-biscochitos-8d6626.netlify.app/" target="_blank" style="text-decoration:none"><div class="contact-card"><span class="ic">📋</span><h4>Liste d'attente</h4><p>S'inscrire gratuitement</p></div></a>
+</div>
+<div style="margin-top:24px" class="fade">
+<a href="https://wa.me/262693540032?text=TAI-CHI" class="btn-v" target="_blank" style="font-size:18px;padding:18px 44px">Cours d'essai gratuit · WhatsApp →</a>
+</div>
+</div></section>
+
+<footer><div class="c">
+<p>© 2026 <a href="#">Aura ✦</a> · Jérôme Loeillet · Vice-Champion d'Europe de Tai-Chi 2010<br>La Saline-les-Hauts · La Réunion 🇷🇪<br><span style="color:var(--v3)">Copilote de vie ✦</span></p>
+</div></footer>
+
+<div class="bottom-bar"></div>
+
+<script>
+// Fade animations
+document.querySelectorAll('.fade').forEach(el=>new IntersectionObserver(n=>{n.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')})},{threshold:0.08}).observe(el));
+// Nav dark/light based on scroll
+const nav=document.getElementById('nav');
+const hero=document.querySelector('.hero');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>hero.offsetHeight-80){nav.classList.remove('dark')}
+  else{nav.classList.add('dark')}
+});
+nav.classList.add('dark');
+</script>
+</body>
+</html>
