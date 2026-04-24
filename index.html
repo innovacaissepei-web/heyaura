@@ -202,6 +202,16 @@ footer a{color:var(--v3);text-decoration:none}
 .poetic-break{padding:60px 0;text-align:center;background:var(--bg-cream)}
 .poetic-break p{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(18px,2.5vw,24px);font-weight:300;color:var(--v4);line-height:1.6;max-width:680px;margin:0 auto;padding:0 28px}
 
+/* CHENG MAN-CHING TRIBUTE BAND */
+.cheng-band{position:relative;background:#08060E;padding:90px 0;overflow:hidden;text-align:center}
+.cheng-watermark{position:absolute;inset:0;background-image:url('cheng-man-ching.jpg');background-size:cover;background-position:center 20%;opacity:0.18;filter:grayscale(100%) contrast(1.1);mix-blend-mode:luminosity}
+.cheng-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,14,0.7) 0%,rgba(45,27,105,0.5) 50%,rgba(8,6,14,0.85) 100%)}
+.cheng-band .c{position:relative;z-index:2}
+.cheng-tag{display:inline-block;font-size:11px;color:var(--gd);letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:16px;padding:6px 18px;border:1px solid rgba(201,169,110,0.35);border-radius:50px;background:rgba(0,0,0,0.3)}
+.cheng-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(22px,3vw,32px);font-weight:300;color:#fff;line-height:1.5;max-width:760px;margin:0 auto 16px;text-shadow:0 2px 20px rgba(0,0,0,0.5)}
+.cheng-attrib{font-size:13px;color:var(--v3);letter-spacing:3px;text-transform:uppercase;font-weight:500}
+.cheng-attrib span{color:#8A8598;font-weight:300;text-transform:none;letter-spacing:1px;display:block;margin-top:6px;font-size:12px;font-style:italic}
+
 @media(max-width:768px){
 .hero-flex{grid-template-columns:1fr}.yy{width:200px;height:200px;margin:0 auto 20px}.yy::before{font-size:80px}
 .grid2,.grid3,.contact-grid{grid-template-columns:1fr}
@@ -333,6 +343,14 @@ footer a{color:var(--v3);text-decoration:none}
 <section class="sec-warm" id="about"><div class="c">
 <div class="fade"><div class="lbl">Le professeur</div>
 <h2 class="ttl">Jérôme · <em>Vice-Champion d'Europe</em></h2></div>
+
+<div class="fade" style="margin:24px 0 32px">
+<div style="aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#000;border:1.5px solid rgba(124,58,237,0.18);box-shadow:0 20px 60px rgba(124,58,237,0.15);max-width:880px;margin:0 auto;position:relative">
+<iframe src="https://www.youtube.com/embed/u1uLFJOkxTo?rel=0&modestbranding=1&mute=1&playsinline=1" title="Jérôme Loeillet · Démonstration Tai-Chi" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0;display:block"></iframe>
+</div>
+<p style="text-align:center;font-size:12px;color:var(--txt-light);letter-spacing:2px;text-transform:uppercase;margin-top:12px;font-weight:500">✦ Démonstration · Forme Yang</p>
+</div>
+
 <div class="grid2 fade">
 <div>
 <p class="sub-txt" style="margin-bottom:16px">En 2010, j'ai eu l'honneur de devenir Vice-Champion d'Europe de Tai-Chi à Oxford. Formé par Maître Thierry Alibert, l'un des rares détenteurs en France de la forme ancienne Yang Lu Chan.</p>
@@ -377,8 +395,15 @@ footer a{color:var(--v3);text-decoration:none}
 </div>
 </div></section>
 
-<!-- POETIC TRANSITION -->
-<div class="poetic-break" style="background:var(--bg-warm)"><p>« L'île n'est pas un décor : c'est un maître. Elle apprend la lenteur à ceux qui savent l'écouter. »</p></div>
+<!-- HOMMAGE: CHENG MAN-CH'ING (la lignée originelle) -->
+<section class="cheng-band">
+<div class="cheng-watermark"></div>
+<div class="c fade">
+<span class="cheng-tag">La lignée · 鄭曼青</span>
+<p class="cheng-quote">« Investis dans la perte. Cède d'abord — pour mieux trouver ta place. »</p>
+<div class="cheng-attrib">Maître Cheng Man-Ch'ing<span>Créateur de la forme courte 37 mouvements · Père spirituel de toute notre transmission</span></div>
+</div>
+</section>
 
 <!-- SECTION: POURQUOI LA RÉUNION -->
 <section class="sec-light" id="reunion"><div class="c" style="text-align:center">
