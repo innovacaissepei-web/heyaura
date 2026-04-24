@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaire d'adhésion — AURA Réunion</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #2d1b69 0%, #6c3fa0 50%, #a855f7 100%);
+  min-height: 100vh;
+  color: #1a1a2e;
+  padding: 20px;
+  line-height: 1.55;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+.hero {
+  text-align: center;
+  color: #fff;
+  padding: 30px 20px 40px;
+}
+.hero-logo {
+  width: 64px; height: 64px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 18px;
+}
+.hero h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: 4px; margin-bottom: 6px; }
+.hero p { opacity: 0.85; font-size: 1.05rem; }
+.hero .tag { font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; margin-top: 8px; }
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 32px 28px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a855f7;
+  margin: 22px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #f3e8ff;
+}
+.section-title:first-child { margin-top: 0; }
+
+.field { margin-bottom: 14px; }
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4a4a6e;
+  margin-bottom: 6px;
+}
+.field label .req { color: #dc2626; }
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #e8e4f0;
+  border-radius: 10px;
+  background: #fafafa;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1a1a2e;
+  transition: border-color 0.15s, background 0.15s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: #a855f7;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
+}
+.field .hint { font-size: 0.78rem; color: #6b7280; margin-top: 4px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 540px) { .row2 { grid-template-columns: 1fr; } }
+
+.formules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 540px) { .formules { grid-template-columns: 1fr; } }
+.formule-opt {
+  border: 2px solid #e8e4f0;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s;
+}
+.formule-opt:hover { border-color: #c4b5fd; background: #faf5ff; }
+.formule-opt input[type="radio"] { position: absolute; opacity: 0; }
+.formule-opt input[type="radio"]:checked + label {
+  color: #6c3fa0;
+}
+.formule-opt input[type="radio"]:checked ~ .formule-opt-bg, .formule-opt:has(input:checked) {
+  background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+  border-color: #a855f7;
+}
+.formule-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; color: #2d1b69; }
+.formule-price { font-size: 1.3rem; font-weight: 800; color: #c026d3; }
+.formule-desc { font-size: 0.78rem; color: #6b7280; margin-top: 4px; }
+
+.checkbox-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #4a4a6e;
+  padding: 8px 0;
+}
+.checkbox-line input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; }
+.checkbox-line a { color: #a855f7; }
+
+.signature-box {
+  border: 2px dashed #c4b5fd;
+  border-radius: 12px;
+  background: #fafafa;
+  padding: 12px;
+  margin-top: 8px;
+}
+.sig-canvas-wrap {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e8e4f0;
+  border-radius: 8px;
+  height: 180px;
+  overflow: hidden;
+}
+.sig-canvas { width: 100%; height: 100%; cursor: crosshair; touch-action: none; display: block; }
+.sig-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c4b5fd;
+  pointer-events: none;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+.sig-actions { display: flex; gap: 8px; margin-top: 10px; }
+.sig-btn {
+  padding: 6px 14px;
+  border: 1px solid #e8e4f0;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+.sig-btn:hover { background: #faf5ff; border-color: #a855f7; color: #6c3fa0; }
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #c026d3, #a855f7);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 14px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 18px rgba(192, 38, 211, 0.35);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(192, 38, 211, 0.45); }
+.btn-primary:disabled { background: #9ca3af; cursor: not-allowed; box-shadow: none; transform: none; }
+
+.btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #fff;
+  color: #6c3fa0;
+  border: 2px solid #c4b5fd;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.success-screen {
+  text-align: center;
+  padding: 40px 20px;
+}
+.success-icon {
+  width: 80px; height: 80px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  margin-bottom: 18px;
+  color: #fff;
+}
+.success-title { font-size: 1.5rem; font-weight: 800; color: #2d1b69; margin-bottom: 10px; }
+.success-text { color: #4a4a6e; margin-bottom: 24px; line-height: 1.6; }
+
+.footer-info {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.82rem;
+  padding: 20px;
+}
+.footer-info a { color: #fff; }
+
+.alert-info {
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #1e40af;
+  margin: 12px 0;
+}
+.error {
+  background: #fee2e2;
+  border-left: 4px solid #dc2626;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #991b1b;
+  font-size: 0.88rem;
+  margin: 14px 0;
+}
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .hero { color: #2d1b69; padding: 20px; }
+  .hero-logo { background: #2d1b69; color: #fff; }
+  .card { box-shadow: none; border: 1px solid #e8e4f0; padding: 20px; }
+  .btn-primary, .btn-secondary, .footer-info, .sig-actions { display: none; }
+  .signature-box { border: 1px solid #2d1b69; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-logo">✦</div>
+    <h1>AURA</h1>
+    <p>Tai Chi &amp; Qi Gong — La Réunion</p>
+    <div class="tag">Copilote de vie</div>
+  </div>
+
+  <div id="formScreen">
+    <form class="card" id="adhesionForm" novalidate>
+
+      <div style="text-align:center;margin-bottom:24px;">
+        <h2 style="font-size:1.5rem;color:#2d1b69;font-weight:800;">📝 Formulaire d'adhésion</h2>
+        <p style="color:#6b7280;margin-top:6px;font-size:0.9rem;">Bienvenue dans la communauté AURA Réunion. Saison 2026-2027.</p>
+      </div>
+
+      <div class="section-title">👤 Identité</div>
+      <div class="row2">
+        <div class="field"><label>Prénom <span class="req">*</span></label><input id="prenom" required></div>
+        <div class="field"><label>Nom <span class="req">*</span></label><input id="nom" required></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Date de naissance <span class="req">*</span></label><input id="naiss" type="date" required></div>
+        <div class="field"><label>Profession</label><input id="profession" placeholder="Optionnel"></div>
+      </div>
+
+      <div class="section-title">📞 Coordonnées</div>
+      <div class="row2">
+        <div class="field"><label>Email <span class="req">*</span></label><input id="email" type="email" required></div>
+        <div class="field"><label>Téléphone <span class="req">*</span></label><input id="tel" type="tel" placeholder="0692 XX XX XX" required></div>
+      </div>
+      <div class="field"><label>Adresse complète <span class="req">*</span></label><input id="adresse" required placeholder="N° et rue, code postal, ville"></div>
+
+      <div class="section-title">🆘 Personne à prévenir en cas d'urgence</div>
+      <div class="row2">
+        <div class="field"><label>Nom &amp; lien</label><input id="urg_nom" placeholder="Ex : Pierre Dupont (mari)"></div>
+        <div class="field"><label>Téléphone</label><input id="urg_tel" placeholder="0692 XX XX XX"></div>
+      </div>
+
+      <div class="section-title">🎫 Choisis ta formule</div>
+      <div class="formules" id="formules">
+        <label class="formule-opt"><input type="radio" name="formule" value="annuelle" checked>
+          <div class="formule-name">Adhésion annuelle</div>
+          <div class="formule-price">250 €</div>
+          <div class="formule-desc">Accès illimité aux cours + app incluse — paiement possible en 3x ou 10x</div>
+        </label>
+        <label class="formule-opt"><input type="radio" name="formule" value="fondateur">
+          <div class="formule-name">Offre Fondateur ⭐</div>
+          <div class="formule-price">199 €</div>
+          <div class="formule-desc">Réservé aux 20 premières inscriptions — économise 51 €</div>
+        </label>
+        <label class="formule-opt"><input type="radio" name="formule" value="forfait_1">
+          <div class="formule-name">Forfait mensuel 1×/sem</div>
+          <div class="formule-price">25 €<span style="font-size:0.85rem;color:#6b7280;font-weight:500;">/mois</span></div>
+          <div class="formule-desc">4 cours/mois, sans engagement</div>
+        </label>
+        <label class="formule-opt"><input type="radio" name="formule" value="forfait_2">
+          <div class="formule-name">Forfait mensuel 2×/sem</div>
+          <div class="formule-price">35 €<span style="font-size:0.85rem;color:#6b7280;font-weight:500;">/mois</span></div>
+          <div class="formule-desc">8 cours/mois, sans engagement</div>
+        </label>
+        <label class="formule-opt"><input type="radio" name="formule" value="carte_10">
+          <div class="formule-name">Carte 10 séances</div>
+          <div class="formule-price">90 €</div>
+          <div class="formule-desc">9 €/cours — validité 3 mois</div>
+        </label>
+        <label class="formule-opt"><input type="radio" name="formule" value="unite">
+          <div class="formule-name">À l'unité</div>
+          <div class="formule-price">12 €</div>
+          <div class="formule-desc">Drop-in, sans engagement</div>
+        </label>
+      </div>
+
+      <div class="row2" style="margin-top:14px;">
+        <div class="field"><label>Niveau actuel</label><select id="niveau">
+          <option>Débutant — je découvre</option>
+          <option>Intermédiaire — j'ai déjà pratiqué</option>
+          <option>Avancé — pratique régulière</option>
+        </select></div>
+        <div class="field"><label>Tarif réduit ?</label><select id="reduction">
+          <option value="">Plein tarif</option>
+          <option value="etudiant">Étudiant (-20 %)</option>
+          <option value="demandeur">Demandeur d'emploi (-20 %)</option>
+          <option value="couple">Couple/Famille (-30 % sur la 2e)</option>
+        </select></div>
+      </div>
+
+      <div class="alert-info">
+        <strong>📋 Certificat médical</strong> obligatoire de non contre-indication à la pratique du Tai Chi et/ou Qi Gong (à fournir dans les 30 jours après l'inscription). Renouvellement annuel.
+      </div>
+
+      <div class="section-title">✅ Engagements</div>
+      <label class="checkbox-line">
+        <input type="checkbox" id="cb_statuts" required>
+        <span>J'ai pris connaissance et j'adhère aux <strong>statuts</strong> et au <strong>règlement intérieur</strong> de l'association AURA Réunion.</span>
+      </label>
+      <label class="checkbox-line">
+        <input type="checkbox" id="cb_certif" required>
+        <span>Je m'engage à fournir un <strong>certificat médical</strong> de non contre-indication à la pratique sportive sous 30 jours.</span>
+      </label>
+      <label class="checkbox-line">
+        <input type="checkbox" id="cb_image">
+        <span>J'autorise l'association à utiliser mon image (photos de cours, vidéos pédagogiques) à des fins de communication non commerciale.</span>
+      </label>
+      <label class="checkbox-line">
+        <input type="checkbox" id="cb_rgpd" required>
+        <span>J'accepte que mes données personnelles soient utilisées pour la gestion de mon adhésion (RGPD — droit d'accès, rectification, suppression sur simple demande).</span>
+      </label>
+
+      <div class="section-title">✍️ Signature</div>
+      <p style="font-size:0.85rem;color:#6b7280;margin-bottom:8px;">Signe ci-dessous (avec ton doigt sur smartphone, ou ta souris sur ordinateur) :</p>
+      <div class="signature-box">
+        <div class="sig-canvas-wrap" id="sigWrap">
+          <canvas class="sig-canvas" id="sigCanvas"></canvas>
+          <div class="sig-placeholder" id="sigPlaceholder">Signe ici</div>
+        </div>
+        <div class="sig-actions">
+          <button type="button" class="sig-btn" onclick="clearSig()">✕ Effacer</button>
+          <span style="flex:1;"></span>
+          <span style="font-size:0.78rem;color:#9ca3af;align-self:center;">Fait à La Saline-les-Hauts, le <span id="todayDate"></span></span>
+        </div>
+      </div>
+
+      <div id="formError" style="display:none;" class="error"></div>
+
+      <button type="submit" class="btn-primary">📨 Envoyer ma demande d'adhésion</button>
+      <button type="button" class="btn-secondary" onclick="window.print()">🖨️ Imprimer cette fiche pour la signer à la main</button>
+
+      <p style="text-align:center;font-size:0.78rem;color:#9ca3af;margin-top:16px;">
+        En soumettant ce formulaire, ta demande sera transmise à l'équipe AURA. Tu recevras une confirmation par email.
+      </p>
+    </form>
+  </div>
+
+  <div id="successScreen" class="card" style="display:none;">
+    <div class="success-screen">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Demande envoyée !</div>
+      <div class="success-text">
+        Ta demande d'adhésion a bien été enregistrée.<br>
+        L'équipe AURA va te recontacter sous 48h pour finaliser.
+      </div>
+
+      <div class="alert-info" style="text-align:left;">
+        <strong>📩 Étape suivante :</strong><br>
+        Télécharge ta fiche d'adhésion ci-dessous et envoie-la par email à <strong>contact@heyaura.fr</strong> avec ton certificat médical en pièce jointe.
+      </div>
+
+      <button type="button" class="btn-primary" onclick="downloadPDF()">📥 Télécharger ma fiche d'adhésion (PDF)</button>
+      <button type="button" class="btn-secondary" onclick="downloadJSON()">💾 Télécharger en JSON (pour l'asso)</button>
+      <button type="button" class="btn-secondary" onclick="sendByEmail()">📧 Ouvrir mon email pour envoyer à l'asso</button>
+      <button type="button" class="btn-secondary" onclick="resetForm()">↺ Nouvelle inscription</button>
+    </div>
+  </div>
+
+  <div class="footer-info">
+    <strong>AURA RÉUNION</strong> — Association Loi 1901<br>
+    24 rue Néhoua, 97422 La Saline-les-Hauts<br>
+    📧 <a href="mailto:contact@heyaura.fr">contact@heyaura.fr</a> &nbsp;•&nbsp; 📞 0693 54 00 32 &nbsp;•&nbsp; 🌐 <a href="https://www.heyaura.fr">www.heyaura.fr</a>
+  </div>
+
+</div>
+
+<script>
+/* ========================================
+   FORMULAIRE D'ADHÉSION AURA
+   ======================================== */
+
+// Date du jour
+document.getElementById('todayDate').textContent = new Date().toLocaleDateString('fr-FR');
+
+// ====== SIGNATURE CANVAS ======
+const canvas = document.getElementById('sigCanvas');
+const ctx = canvas.getContext('2d');
+const placeholder = document.getElementById('sigPlaceholder');
+let isDrawing = false;
+let hasDrawn = false;
+let lastX = 0, lastY = 0;
+
+function resizeCanvas() {
+  const wrap = document.getElementById('sigWrap');
+  const dpr = window.devicePixelRatio || 1;
+  const w = wrap.clientWidth;
+  const h = wrap.clientHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  ctx.scale(dpr, dpr);
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = '#1a1a2e';
+}
+window.addEventListener('load', resizeCanvas);
+window.addEventListener('resize', resizeCanvas);
+
+function getXY(e) {
+  const rect = canvas.getBoundingClientRect();
+  if (e.touches && e.touches.length) {
+    return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top };
+  }
+  return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+}
+
+function startDraw(e) {
+  e.preventDefault();
+  isDrawing = true;
+  hasDrawn = true;
+  placeholder.style.display = 'none';
+  const { x, y } = getXY(e);
+  lastX = x; lastY = y;
+}
+function draw(e) {
+  if (!isDrawing) return;
+  e.preventDefault();
+  const { x, y } = getXY(e);
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  lastX = x; lastY = y;
+}
+function stopDraw(e) {
+  if (e) e.preventDefault();
+  isDrawing = false;
+}
+
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDraw);
+canvas.addEventListener('mouseleave', stopDraw);
+canvas.addEventListener('touchstart', startDraw, { passive: false });
+canvas.addEventListener('touchmove', draw, { passive: false });
+canvas.addEventListener('touchend', stopDraw, { passive: false });
+
+function clearSig() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hasDrawn = false;
+  placeholder.style.display = 'flex';
+}
+
+// ====== FORM SUBMISSION ======
+const FORMULES = {
+  annuelle: { label: 'Adhésion annuelle', prix: 250 },
+  fondateur: { label: 'Offre Fondateur', prix: 199 },
+  forfait_1: { label: 'Forfait mensuel 1×/sem', prix: 25 },
+  forfait_2: { label: 'Forfait mensuel 2×/sem', prix: 35 },
+  carte_10: { label: 'Carte 10 séances', prix: 90 },
+  unite: { label: 'À l\'unité', prix: 12 },
+};
+
+let submittedData = null;
+
+document.getElementById('adhesionForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const errEl = document.getElementById('formError');
+  errEl.style.display = 'none';
+
+  // validate
+  const required = ['prenom', 'nom', 'naiss', 'email', 'tel', 'adresse'];
+  const missing = required.filter(id => !document.getElementById(id).value.trim());
+  if (missing.length) {
+    errEl.textContent = '⚠️ Merci de remplir tous les champs marqués d\'une étoile.';
+    errEl.style.display = 'block';
+    document.getElementById(missing[0]).focus();
+    return;
+  }
+  if (!document.getElementById('cb_statuts').checked || !document.getElementById('cb_certif').checked || !document.getElementById('cb_rgpd').checked) {
+    errEl.textContent = '⚠️ Merci d\'accepter les engagements obligatoires (statuts, certificat médical, RGPD).';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!hasDrawn) {
+    errEl.textContent = '⚠️ Merci de signer le formulaire (cadre signature).';
+    errEl.style.display = 'block';
+    document.getElementById('sigWrap').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  // collect
+  const formuleVal = document.querySelector('input[name="formule"]:checked').value;
+  const reductionVal = document.getElementById('reduction').value;
+  let prix = FORMULES[formuleVal].prix;
+  let reductionLbl = '';
+  if (reductionVal === 'etudiant' || reductionVal === 'demandeur') { prix = Math.round(prix * 0.8 * 100) / 100; reductionLbl = '−20 %'; }
+  else if (reductionVal === 'couple') { prix = Math.round(prix * 0.7 * 100) / 100; reductionLbl = '−30 %'; }
+
+  submittedData = {
+    type: 'adhesion_form_aura',
+    version: 1,
+    submitted_at: new Date().toISOString(),
+    prenom: document.getElementById('prenom').value.trim(),
+    nom: document.getElementById('nom').value.trim(),
+    nom_complet: document.getElementById('prenom').value.trim() + ' ' + document.getElementById('nom').value.trim(),
+    date_naissance: document.getElementById('naiss').value,
+    profession: document.getElementById('profession').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    tel: document.getElementById('tel').value.trim(),
+    adresse: document.getElementById('adresse').value.trim(),
+    urgence_nom: document.getElementById('urg_nom').value.trim(),
+    urgence_tel: document.getElementById('urg_tel').value.trim(),
+    formule_code: formuleVal,
+    formule_label: FORMULES[formuleVal].label,
+    formule_prix: prix,
+    formule_reduction: reductionLbl,
+    niveau: document.getElementById('niveau').value,
+    accepte_statuts: true,
+    accepte_certif: true,
+    accepte_image: document.getElementById('cb_image').checked,
+    accepte_rgpd: true,
+    signature_data_url: canvas.toDataURL('image/png'),
+    date_signature: new Date().toISOString().slice(0,10),
+  };
+
+  // Save to localStorage so the asso can collect later if same browser
+  try {
+    const list = JSON.parse(localStorage.getItem('aura_adhesion_inbox') || '[]');
+    list.push(submittedData);
+    localStorage.setItem('aura_adhesion_inbox', JSON.stringify(list));
+  } catch(e) { /* ignore */ }
+
+  // Show success
+  document.getElementById('formScreen').style.display = 'none';
+  document.getElementById('successScreen').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+function escapeHTML(s) { return (s||'').toString().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmtMoney(n) { return (Number(n)||0).toLocaleString('fr-FR', { minimumFractionDigits: 2 }) + ' €'; }
+function fmtDate(iso) { if (!iso) return '—'; const d = new Date(iso); return isNaN(d) ? iso : d.toLocaleDateString('fr-FR'); }
+
+function downloadPDF() {
+  if (!submittedData) return;
+  const d = submittedData;
+  const html = `
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>Fiche d'adhésion ${escapeHTML(d.nom_complet)}</title>
+<style>
+body { font-family: 'Inter','Segoe UI',sans-serif; padding: 30px; color:#1a1a2e; line-height:1.5; }
+.header { display:flex; justify-content:space-between; align-items:center; padding-bottom:18px; border-bottom:3px solid #a855f7; margin-bottom:24px; }
+.header h1 { font-size:1.6rem; color:#2d1b69; letter-spacing:2px; }
+.header .meta { text-align:right; font-size:0.82rem; color:#6b7280; }
+h2 { font-size:0.78rem; color:#a855f7; text-transform:uppercase; letter-spacing:2px; margin:18px 0 8px; padding-bottom:5px; border-bottom:1px solid #f3e8ff; }
+.row { display:flex; gap:16px; margin-bottom:6px; }
+.row > div { flex:1; }
+.lbl { font-size:0.75rem; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; }
+.val { font-size:0.95rem; font-weight:600; }
+.formule-box { background:#faf5ff; border:2px solid #a855f7; padding:14px 18px; border-radius:10px; margin:8px 0; }
+.formule-box .name { font-size:1.1rem; font-weight:700; color:#2d1b69; }
+.formule-box .price { font-size:1.4rem; font-weight:800; color:#c026d3; }
+ul { margin:6px 0 14px 22px; font-size:0.88rem; }
+.sig-block { display:flex; gap:24px; margin-top:24px; }
+.sig-block > div { flex:1; }
+.sig-img { border-bottom:1px solid #1a1a2e; padding:6px; min-height:80px; background:#fff; }
+.sig-img img { max-height:70px; max-width:100%; }
+.footer-doc { margin-top:30px; padding-top:18px; border-top:1px solid #e8e4f0; font-size:0.78rem; color:#6b7280; text-align:center; }
+@page { size: A4; margin: 14mm; }
+</style></head><body>
+<div class="header">
+  <div>
+    <h1>✦ AURA RÉUNION</h1>
+    <div style="font-size:0.85rem;color:#6b7280;">Tai Chi &amp; Qi Gong • La Saline-les-Hauts</div>
+  </div>
+  <div class="meta">
+    <strong>FICHE D'ADHÉSION</strong><br>
+    Saison 2026-2027<br>
+    Émise le ${fmtDate(d.submitted_at.slice(0,10))}
+  </div>
+</div>
+<h2>Identité</h2>
+<div class="row"><div><div class="lbl">Prénom</div><div class="val">${escapeHTML(d.prenom)}</div></div>
+<div><div class="lbl">Nom</div><div class="val">${escapeHTML(d.nom)}</div></div></div>
+<div class="row"><div><div class="lbl">Date de naissance</div><div class="val">${fmtDate(d.date_naissance)}</div></div>
+<div><div class="lbl">Profession</div><div class="val">${escapeHTML(d.profession || '—')}</div></div></div>
+<h2>Coordonnées</h2>
+<div class="row"><div><div class="lbl">Email</div><div class="val">${escapeHTML(d.email)}</div></div>
+<div><div class="lbl">Téléphone</div><div class="val">${escapeHTML(d.tel)}</div></div></div>
+<div><div class="lbl">Adresse</div><div class="val">${escapeHTML(d.adresse)}</div></div>
+<h2>Personne à prévenir en cas d'urgence</h2>
+<div class="row"><div><div class="lbl">Nom &amp; lien</div><div class="val">${escapeHTML(d.urgence_nom||'—')}</div></div>
+<div><div class="lbl">Téléphone</div><div class="val">${escapeHTML(d.urgence_tel||'—')}</div></div></div>
+<h2>Formule choisie</h2>
+<div class="formule-box">
+  <div class="name">${escapeHTML(d.formule_label)} ${d.formule_reduction ? `<span style="font-size:0.85rem;color:#6b7280;">(${escapeHTML(d.formule_reduction)})</span>` : ''}</div>
+  <div class="price">${fmtMoney(d.formule_prix)}</div>
+  <div style="font-size:0.85rem;color:#6b7280;margin-top:4px;">Niveau déclaré : ${escapeHTML(d.niveau)}</div>
+</div>
+<h2>Engagements</h2>
+<ul>
+  <li>✓ Statuts et règlement intérieur acceptés</li>
+  <li>✓ Engagement à fournir un certificat médical sous 30 jours</li>
+  <li>${d.accepte_image ? '✓' : '✗'} Autorisation d'utilisation d'image</li>
+  <li>✓ Acceptation RGPD</li>
+</ul>
+<div class="sig-block">
+  <div>
+    <div class="lbl">Fait à La Saline-les-Hauts, le</div>
+    <div class="val">${fmtDate(d.date_signature)}</div>
+  </div>
+  <div>
+    <div class="lbl">Signature de l'adhérent(e)</div>
+    <div class="sig-img"><img src="${d.signature_data_url}" alt="signature"></div>
+  </div>
+</div>
+<div class="footer-doc">
+  <strong>AURA RÉUNION</strong> — Association Loi 1901 — 24 rue Néhoua, 97422 La Saline-les-Hauts<br>
+  contact@heyaura.fr • 0693 54 00 32 • www.heyaura.fr
+</div>
+</body></html>`;
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+  setTimeout(() => w.print(), 400);
+}
+
+function downloadJSON() {
+  if (!submittedData) return;
+  const blob = new Blob([JSON.stringify(submittedData, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `adhesion_${submittedData.nom}_${submittedData.prenom}_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function sendByEmail() {
+  if (!submittedData) return;
+  const d = submittedData;
+  const subject = `Demande d'adhésion AURA — ${d.nom_complet}`;
+  const body = `Bonjour AURA Réunion,
+
+Je vous transmets ma demande d'adhésion :
+
+Prénom : ${d.prenom}
+Nom : ${d.nom}
+Date de naissance : ${fmtDate(d.date_naissance)}
+Email : ${d.email}
+Téléphone : ${d.tel}
+Adresse : ${d.adresse}
+
+Formule choisie : ${d.formule_label} (${fmtMoney(d.formule_prix)})${d.formule_reduction ? ' avec réduction ' + d.formule_reduction : ''}
+Niveau : ${d.niveau}
+
+Contact urgence : ${d.urgence_nom||'(non renseigné)'} ${d.urgence_tel||''}
+
+Engagements acceptés :
+- Statuts et règlement intérieur
+- Certificat médical à fournir sous 30 jours
+${d.accepte_image ? '- Autorisation image' : '- (pas d\'autorisation image)'}
+- Acceptation RGPD
+
+Je joins ma fiche d'adhésion signée et mon certificat médical.
+
+Cordialement,
+${d.nom_complet}`;
+
+  const mailto = `mailto:contact@heyaura.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+}
+
+function resetForm() {
+  document.getElementById('adhesionForm').reset();
+  clearSig();
+  submittedData = null;
+  document.getElementById('successScreen').style.display = 'none';
+  document.getElementById('formScreen').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
