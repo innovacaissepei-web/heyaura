@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pré-inscription — AURA Réunion · Tai Chi & Qi Gong</title>
+<meta name="description" content="Manifestez votre intérêt pour les cours AURA Réunion (Tai Chi Chuan, Qi Gong, application bien-être, stage Thierry Alibert janvier 2027). 30 secondes, sans engagement.">
+<meta property="og:title" content="AURA Réunion — Pré-inscription">
+<meta property="og:description" content="Cours de Tai Chi & Qi Gong dans l'Ouest de La Réunion. Démarrage septembre 2026. Pré-inscription en 30 secondes, sans engagement.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://heyaura.fr/pre-inscription">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #2d1b69 0%, #6c3fa0 50%, #a855f7 100%);
+  min-height: 100vh;
+  color: #1a1a2e;
+  padding: 20px;
+  line-height: 1.55;
+}
+.wrap { max-width: 560px; margin: 0 auto; }
+.hero { text-align: center; color: #fff; padding: 24px 20px 32px; }
+.hero-logo {
+  width: 60px; height: 60px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 18px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.7rem; margin-bottom: 14px;
+}
+.hero h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: 3px; margin-bottom: 8px; }
+.hero p { opacity: 0.92; font-size: 1.02rem; max-width: 480px; margin: 0 auto; }
+.hero .tag { font-size: 0.74rem; letter-spacing: 2.5px; text-transform: uppercase; opacity: 0.7; margin-top: 6px; }
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px 26px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+}
+.intro { font-size: 0.94rem; color: #4a4a6e; margin-bottom: 22px; }
+.intro strong { color: #2d1b69; }
+
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 0.83rem; font-weight: 600;
+  color: #4a4a6e; margin-bottom: 6px;
+}
+.field label .req { color: #dc2626; margin-left: 2px; }
+.field input, .field select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e8e4f0;
+  border-radius: 10px;
+  background: #fafafa;
+  font-size: 0.96rem; font-family: inherit;
+  color: #1a1a2e;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.field input:focus, .field select:focus {
+  outline: none;
+  border-color: #a855f7;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
+}
+
+.btn {
+  display: block; width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #6c3fa0, #a855f7);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.02rem; font-weight: 700; font-family: inherit;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+.btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(168, 85, 247, 0.35); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.privacy {
+  font-size: 0.78rem; color: #8a8598;
+  margin-top: 14px; text-align: center;
+  line-height: 1.5;
+}
+
+.success {
+  display: none;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  padding: 28px 24px;
+  border-radius: 14px;
+  text-align: center;
+}
+.success.show { display: block; }
+.success .ic { font-size: 2.4rem; display: block; margin-bottom: 10px; }
+.success h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+.success p { opacity: 0.95; font-size: 0.96rem; }
+.success a { color: #fff; text-decoration: underline; font-weight: 600; }
+
+.error {
+  display: none;
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+.error.show { display: block; }
+
+.foot {
+  text-align: center;
+  margin-top: 22px;
+  color: rgba(255,255,255,0.78);
+  font-size: 0.86rem;
+}
+.foot a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.4); }
+.foot a:hover { border-bottom-color: #fff; }
+
+@media (max-width: 540px) {
+  .hero h1 { font-size: 1.55rem; letter-spacing: 2px; }
+  .card { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-logo">✦</div>
+  <h1>AURA RÉUNION</h1>
+  <div class="tag">Tai Chi · Qi Gong · Bien-être</div>
+  <p style="margin-top:14px">Pré-inscrivez-vous en 30 secondes — sans engagement.<br>Vous serez informé en priorité de l'ouverture des cours en septembre 2026.</p>
+</header>
+
+<div class="card" id="formCard">
+  <div class="intro">
+    <strong>L'association AURA RÉUNION</strong> ouvre ses cours de <strong>Tai Chi Chuan et Qi Gong</strong> dans l'Ouest de l'île à la rentrée 2026.
+    Indiquez votre intérêt — vous recevrez les infos pratiques (lieux, créneaux, tarifs) dès qu'elles seront calées.
+  </div>
+
+  <form id="preForm" novalidate>
+    <div class="field">
+      <label for="prenom">Prénom<span class="req">*</span></label>
+      <input type="text" id="prenom" name="prenom" required autocomplete="given-name" placeholder="Votre prénom">
+    </div>
+
+    <div class="field">
+      <label for="email">Email<span class="req">*</span></label>
+      <input type="email" id="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr">
+    </div>
+
+    <div class="field">
+      <label for="commune">Commune<span class="req">*</span></label>
+      <select id="commune" name="commune" required>
+        <option value="">— Sélectionnez —</option>
+        <option>La Saline-les-Hauts / La Saline-les-Bains</option>
+        <option>Saint-Paul</option>
+        <option>Saint-Gilles / L'Ermitage</option>
+        <option>Le Port / La Possession</option>
+        <option>Saint-Leu</option>
+        <option>Saint-Denis</option>
+        <option>Saint-Pierre</option>
+        <option>Autre commune Réunion</option>
+        <option>Hors Réunion</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="interet">Ce qui vous intéresse principalement<span class="req">*</span></label>
+      <select id="interet" name="interet" required>
+        <option value="">— Sélectionnez —</option>
+        <option>Cours hebdomadaires de Tai Chi / Qi Gong en présentiel</option>
+        <option>Application AURA (bien-être, respiration, vidéothèque)</option>
+        <option>Stage Thierry Alibert (janvier 2027)</option>
+        <option>Cours en entreprise / EHPAD / établissement</option>
+        <option>Plusieurs ou tout l'écosystème</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn" id="submitBtn">Pré-inscrire ✦</button>
+
+    <div class="error" id="errBox">Une erreur est survenue. Réessayez ou contactez-nous via WhatsApp au 06 93 54 00 32.</div>
+
+    <p class="privacy">
+      Sans engagement. Vos données ne seront utilisées que pour vous tenir informé d'AURA RÉUNION.
+      Désinscription possible à tout moment.
+    </p>
+  </form>
+</div>
+
+<div class="card success" id="successBox">
+  <span class="ic">✦</span>
+  <h2>Bien noté, merci !</h2>
+  <p>Votre pré-inscription est enregistrée. Vous recevrez les prochaines infos pratiques dès qu'elles seront calées (créneaux, lieux, tarifs).</p>
+  <p style="margin-top:14px">En attendant, vous pouvez <a href="https://heyaura.fr">découvrir AURA</a> ou nous écrire sur <a href="https://wa.me/262693540032">WhatsApp</a>.</p>
+</div>
+
+<div class="foot">
+  <a href="/">← Retour à heyaura.fr</a>
+</div>
+
+</div>
+
+<script>
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_FORM_ID";
+
+const form = document.getElementById('preForm');
+const btn = document.getElementById('submitBtn');
+const errBox = document.getElementById('errBox');
+const formCard = document.getElementById('formCard');
+const successBox = document.getElementById('successBox');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errBox.classList.remove('show');
+  btn.disabled = true;
+  btn.textContent = 'Envoi…';
+
+  const data = new FormData(form);
+  data.append('_subject', 'Nouvelle pré-inscription AURA — ' + (data.get('prenom') || ''));
+
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      formCard.style.display = 'none';
+      successBox.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (err) {
+    errBox.classList.add('show');
+    btn.disabled = false;
+    btn.textContent = 'Pré-inscrire ✦';
+  }
+});
+</script>
+</body>
+</html>
